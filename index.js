@@ -9,7 +9,7 @@ class MarkovChain {
    * @param {number} [nGrams=3] The size of the n-gram.
    * @param {string} [start=%startf%] The start delimiter to use. Must not contain the separation token.
    * @param {string} [end=%endf%] The end delimiter to use. Must not contain the separation token.
-   * @param {string} [separation= ] The separation token to use to split the new texts.
+   * @param {string} [separation=' '] The separation token to use to split the new texts.
    */
   constructor(nGrams = 3, start = '%startf%', end = '%endf%', separation = ' ') {
 

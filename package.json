@@ -1,5 +1,8 @@
 {
   "name": "markov-chain",
+  "description": "A simple Marvkov chain class supporting different n-grams",
+  "keywords": ["markov", "chain", "nlp", "chatbot"],
+  "homepage": "https://purplnay.github.io/markov-chain/",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
@@ -10,6 +13,6 @@
     "jsdoc": "^3.6.3"
   },
   "scripts": {
-    "docs": "jsdoc index.js -d docs -t node_modules/docdash"
+    "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash"
   }
 }

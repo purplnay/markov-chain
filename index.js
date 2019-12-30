@@ -7,10 +7,11 @@ class MarkovChain {
    * Create a Markov chain.
    * 
    * @param {number} [nGrams=3] The size of the n-gram.
-   * @param {string} [start=%startf%] The start delimiter to use.
-   * @param {string} [end=%endf%] The end delimiter to use.
+   * @param {string} [start=%startf%] The start delimiter to use. Must not contain the separation token.
+   * @param {string} [end=%endf%] The end delimiter to use. Must not contain the separation token.
+   * @param {string} [separation= ] The separation token to use to split the new texts.
    */
-  constructor(nGrams = 3, start = '%startf%', end = '%endf%') {
+  constructor(nGrams = 3, start = '%startf%', end = '%endf%', separation = ' ') {
 
     /**
      * The n-gram used by the chain.
@@ -23,15 +24,24 @@ class MarkovChain {
      * The formatted start delimiter.
      * 
      * @type {string}
+     * @private
      */
-    this.start = `${start} `;
+    this._start = `${start} `;
 
     /**
      * The formatted end delimiter.
      * 
      * @type {string}
+     * @private
      */
-    this.end = ` ${end}`;
+    this._end = ` ${end}`;
+
+    /**
+     * The separation token used to split the new texts.
+     * 
+     * @type {string}
+     */
+    this.separation = separation;
 
     /**
      * The corpus of the chain.
@@ -39,6 +49,26 @@ class MarkovChain {
      * @type {string[][]}
      */
     this.corpus = [];
+  }
+
+  /**
+   * The start delimiter.
+   * 
+   * @readonly
+   * @type {string}
+   */
+  get start() {
+    return this._start.trim();
+  }
+
+  /**
+   * The end delimiter.
+   * 
+   * @readonly
+   * @type {string}
+   */
+  get end() {
+    return this._end.trim();
   }
 
   /**
@@ -50,7 +80,7 @@ class MarkovChain {
   update(text) {
     if (text.trim().length === 0) return this;
 
-    const words = this.trim(`${this.start.repeat(this.nGrams)} ${text} ${this.end.repeat(this.nGrams)}`).split(' ');
+    const words = this._trim(`${this._start.repeat(this.nGrams)} ${text} ${this._end.repeat(this.nGrams)}`).split(' ');
 
     for (let i in words) {
       const index = Number(i);
@@ -66,15 +96,15 @@ class MarkovChain {
   /**
    * Generate a new text.
    * 
-   * @param {string} [start=%this.start%] The word to start with.
+   * @param {string} [start=%this._start%] The word to start with.
    * @return {string} The generated text.
    */
-  generate(start = this.start) {
+  generate(start = this._start) {
     if (this.corpus.length === 0) return '';
 
     const words = [start.trim()];
 
-    while (words[words.length - 1] !== this.end.trim()) {
+    while (words[words.length - 1] !== this._end.trim()) {
       const nextChains = this.corpus.filter(chain => chain[0] === words[words.length - 1]);
       const nextChain = nextChains[Math.floor(Math.random() * nextChains.length)];
 
@@ -82,8 +112,8 @@ class MarkovChain {
     }
 
     return words.join(' ')
-      .replace(new RegExp(this.start, 'g'), '')
-      .replace(new RegExp(this.end, 'g'), '')
+      .replace(new RegExp(this._start, 'g'), '')
+      .replace(new RegExp(this._end, 'g'), '')
       .trim();
   }
 
@@ -92,8 +122,9 @@ class MarkovChain {
    * 
    * @param {string} str The string to trim.
    * @return {string} The trimmed string.
+   * @private
    */
-  trim(str) {
+  _trim(str) {
     return str.replace(/\s\s+/g, ' ').trim();
   }
 
@@ -105,8 +136,9 @@ class MarkovChain {
   toJSON() {
     return {
       nGrams: this.nGrams,
-      start: this.start.trim(),
-      end: this.end.trim(),
+      start: this.start,
+      end: this.end,
+      separation: this.separation,
       corpus: [...this.corpus]
     };
   }
@@ -118,7 +150,7 @@ class MarkovChain {
    * @return {MarkovChain} The MarkovChain instance built from the JSON.
    */
   static fromJSON(json) {
-    const markovChain = new MarkovChain(json.nGrams, json.start, json.end);
+    const markovChain = new MarkovChain(json.nGrams, json.start, json.end, json.separation);
 
     markovChain.corpus = [...json.corpus];
 

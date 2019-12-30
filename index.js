@@ -80,7 +80,7 @@ class MarkovChain {
   update(text) {
     if (text.trim().length === 0) return this;
 
-    const words = this._trim(`${this._start.repeat(this.nGrams)} ${text} ${this._end.repeat(this.nGrams)}`).split(' ');
+    const words = this._trim(`${this._start.repeat(this.nGrams)} ${text} ${this._end.repeat(this.nGrams)}`).split(this.separation);
 
     for (let i in words) {
       const index = Number(i);
@@ -111,7 +111,7 @@ class MarkovChain {
       words.push(...nextChain.slice(1));
     }
 
-    return words.join(' ')
+    return words.join(this.separation)
       .replace(new RegExp(this._start, 'g'), '')
       .replace(new RegExp(this._end, 'g'), '')
       .trim();

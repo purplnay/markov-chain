@@ -44,13 +44,13 @@ class MarkovChain {
   /**
    * Update the corpus of the chain.
    * 
-   * @param {string} sentence The sentence to add.
+   * @param {string} text The text to add.
    * @return {MarkovChain} The current MarkovChain instance, updated.
    */
-  update(sentence) {
-    if (sentence.trim().length === 0) return this;
+  update(text) {
+    if (text.trim().length === 0) return this;
 
-    const words = this.trim(`${this.start.repeat(this.nGrams)} ${sentence} ${this.end.repeat(this.nGrams)}`).split(' ');
+    const words = this.trim(`${this.start.repeat(this.nGrams)} ${text} ${this.end.repeat(this.nGrams)}`).split(' ');
 
     for (let i in words) {
       const index = Number(i);

@@ -10,7 +10,7 @@ The docs is available [here](https://purplnay.github.io/markov-chain/MarkovChain
 
 
 ```javascript
-const MarkovChain = require('markov-chain');
+const MarkovChain = require('purpl-markov-chain');
 
 const chain = new MarkovChain(); // Create a Markov chain
 

@@ -1,5 +1,5 @@
 {
-  "name": "markov-chain",
+  "name": "purpl-markov-chain",
   "description": "A simple Marvkov chain class supporting different n-grams",
   "keywords": ["markov", "chain", "nlp", "chatbot"],
   "homepage": "https://purplnay.github.io/markov-chain/",

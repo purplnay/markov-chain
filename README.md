@@ -11,19 +11,19 @@ The docs is available [here](https://purplnay.github.io/markov-chain/MarkovChain
 
 ## Installation
 
-For use in npm, run the command:
+- For use in npm, run the command:
 
 `npm install --save purpl-markov-chain`.
 
 
-For use in the browser, you can include the library from a CDN:
+- For use in the browser, you can include the library from a CDN:
 
 ```html
 <script src="https://unpkg.com/purpl-markov-chain/markov-chain.js">
 ```
 
 
-## Usave
+## Usage
 
 ```javascript
 // No need to include the file if working in the browser

@@ -10,7 +10,7 @@
     "ngrams"
   ],
   "homepage": "https://purplnay.github.io/markov-chain/",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
   "author": "Nay <nay@purpltag.com>",
@@ -23,6 +23,7 @@
     "webpack-cli": "^3.3.10"
   },
   "scripts": {
-    "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash"
+    "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash",
+    "build": "webpack"
   }
 }

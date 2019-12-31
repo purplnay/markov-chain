@@ -4,6 +4,6 @@ module.exports = {
   output: {
     path: __dirname,
     library: 'MarkovChain',
-    filename: 'purpl-markov-chain.js',
+    filename: 'markov-chain.js',
   }
 }

@@ -3,10 +3,11 @@
   "description": "A simple Marvkov chain class supporting different n-grams",
   "keywords": ["markov", "chain", "nlp", "chatbot"],
   "homepage": "https://purplnay.github.io/markov-chain/",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
   "author": "Nay <nay@purpltag.com>",
+  "types": "typings/index.d.ts",
   "license": "MIT",
   "devDependencies": {
     "docdash": "^1.1.1",

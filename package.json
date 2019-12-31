@@ -1,7 +1,14 @@
 {
   "name": "purpl-markov-chain",
   "description": "A simple Marvkov chain class supporting different n-grams",
-  "keywords": ["markov", "chain", "nlp", "chatbot", "markov-chain", "ngrams"],
+  "keywords": [
+    "markov",
+    "chain",
+    "nlp",
+    "chatbot",
+    "markov-chain",
+    "ngrams"
+  ],
   "homepage": "https://purplnay.github.io/markov-chain/",
   "version": "1.0.4",
   "main": "index.js",
@@ -11,7 +18,9 @@
   "license": "MIT",
   "devDependencies": {
     "docdash": "^1.1.1",
-    "jsdoc": "^3.6.3"
+    "jsdoc": "^3.6.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "scripts": {
     "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash"

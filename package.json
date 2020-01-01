@@ -18,13 +18,9 @@
   "types": "typings/index.d.ts",
   "license": "MIT",
   "devDependencies": {
-    "docdash": "^1.1.1",
-    "jsdoc": "^3.6.3",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "jsdoc": "^3.6.3"
   },
   "scripts": {
-    "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash",
-    "build": "webpack"
+    "docs": "jsdoc -R README.md index.js -d docs"
   }
 }

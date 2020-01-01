@@ -7,12 +7,12 @@ declare module 'purpl-markov-chain' {
     /**
      * The start delimiter.
      */
-    readonly start: string;
+    start: string;
 
     /**
      * The end delimiter.
      */
-    readonly end: string;
+    end: string;
 
     /**
      * The n-gram used by the chain.

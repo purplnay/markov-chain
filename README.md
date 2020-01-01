@@ -19,7 +19,10 @@ The docs is available [here](https://purplnay.github.io/markov-chain/MarkovChain
 - For use in the browser, you can include the library from a CDN:
 
 ```html
-<script src="https://unpkg.com/purpl-markov-chain/markov-chain.js">
+<script src="https://unpkg.com/purpl-markov-chain/index.js"></script>
+<script>
+  const chain = new MarkovChain();
+</script>
 ```
 
 

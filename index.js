@@ -85,7 +85,7 @@ class MarkovChain {
     while (words[words.length - 1] !== this.end) {
       const nextChains = this.corpus.filter(chain => chain[0] === words[words.length - 1]);
       const nextChain = nextChains[Math.floor(Math.random() * nextChains.length)];
-console.log(nextChain)
+
       words.push(...nextChain.slice(1));
     }
 

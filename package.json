@@ -11,7 +11,7 @@
     "purpl"
   ],
   "homepage": "https://purplnay.github.io/markov-chain/",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
   "author": "Nay <nay@purpltag.com>",

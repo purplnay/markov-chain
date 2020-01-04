@@ -58,7 +58,19 @@ class MarkovChain {
   update(text) {
     if (text.trim().length === 0) return this;
 
-    const words = [`${this.start}${this.separation}`.repeat(this.nGrams - 1), ...`${text}`.split(this.separation), `${this.end}${this.separation}`.repeat(this.nGrams - 1)];
+    const start = [];
+    const end = [];
+    
+    for (let i = 0; i < this.nGrams; i++) {
+      start.push(this.start);
+      end.push(this.end);
+    }
+    
+    const words = `${start.join(this.separation)}` +
+          this.separation +
+          `${text}`.split(this.separation) +
+          this.separation +
+          `${end.join(this.separation)}`;
 
     for (let i in words) {
       const index = Number(i);

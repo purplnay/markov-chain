@@ -96,6 +96,58 @@ class MarkovChain {
   }
 
   /**
+   * Build a sentence from a word.
+   * 
+   * @param {string} word The word to build a sentence from.
+   * @return {string}
+   */
+  generateFrom(word) {
+    if (this.corpus.length === 0 || !this.contains(word) || word === this.start || word === this.end) return '';
+
+    const leftPart = [];
+    const rightPart = this.generate(word);
+
+    let search = word;
+
+    while (search !== this.start) {
+      if (search === word) {
+        const chains = this.corpus.filter(chain => chain.indexOf(word) > 0);
+        const chain = [...chains[Math.floor(Math.random() * chains.length)]].reverse();
+
+        while (chain[0] !== word) {
+          chain.shift();
+        }
+
+        leftPart.push(...chain);
+
+        search = leftPart[leftPart.length - 1];
+
+        continue;
+      }
+
+      const nextChains = this.corpus.filter(chain => chain[chain.length - 1] === search);
+      const nextChain = nextChains[Math.floor(Math.random() * nextChains.length)];
+
+      leftPart.push(...nextChain.reverse().slice(1));
+      search = leftPart[leftPart.length];
+    }
+
+    leftPart.pop();
+
+    return [...leftPart.reverse(), rightPart].join(this.separation);
+  }
+
+  /**
+   * Check if the Markov chain contains a word.
+   * 
+   * @param {string} word The word to check.
+   * @return {boolean}
+   */
+  contains(word) {
+    return this.corpus.filter(s => s.indexOf(word) !== -1).length > 0;
+  }
+
+  /**
    * Transforms the current Markov chain to a JSON object.
    * 
    * @return {Object} The current Markov chain as a JSON object.

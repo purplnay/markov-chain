@@ -51,6 +51,18 @@ declare module 'purpl-markov-chain' {
     generate(start?: string): string;
 
     /**
+     * Build a sentence from a word.
+     * @param word The word to build a sentence from.
+     */
+    generateFrom(word: string): string;
+
+    /**
+     * Check if the Markov chain contains a word.
+     * @param word The word to check.
+     */
+    contains(word: string): boolean;
+
+    /**
      * Transforms the current Markov chain to a JSON object.
      */
     toJSON(): Object;

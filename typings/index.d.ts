@@ -56,9 +56,23 @@ declare module 'purpl-markov-chain' {
     toJSON(): Object;
 
     /**
+     * Transforms the current Markov chain to a JSON string.
+     * @return The current Markov chain as a JSON string.
+     */
+    toString(): string;
+
+    /**
      * Create a MarkovChain instance from a JSON object.
      * @param json The JSON object.
+     * @return The MarkovChain instance built from the JSON.
      */
     static fromJSON(json: Object): MarkovChain;
+
+    /**
+     * Create a MarkovChain instance from a JSON string.
+     * @param str The JSON string.
+     * @return The MarkovChain instance built from the string.
+     */
+    static fromString(str: string): MarkovChain;
   }
 }

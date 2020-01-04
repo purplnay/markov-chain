@@ -111,6 +111,15 @@ class MarkovChain {
   }
 
   /**
+   * Transforms the current Markov chain to a JSON string.
+   * 
+   * @return {string} The current Markov chain as a JSON string.
+   */
+  toString() {
+    return JSON.stringify(this.toJSON());
+  }
+
+  /**
    * Create a MarkovChain instance from a JSON object.
    * 
    * @param {Object} json The JSON object.
@@ -122,6 +131,16 @@ class MarkovChain {
     markovChain.corpus = [...json.corpus];
 
     return markovChain;
+  }
+
+/**
+ * Create a MarkovChain instance from a JSON string.
+ *
+ * @param {string} json The JSON string.
+ * @return {MarkovChain} The MarkovChain instance built from the string.
+ */
+  static fromString(str) {
+    return this.fromJSON(JSON.parse(str));
   }
 }
 

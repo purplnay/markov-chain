@@ -6,7 +6,7 @@ A simple Marvkov chain class supporting different n-grams
 ## Documentation
 
 
-The docs is available [here](https://purplnay.github.io/markov-chain/MarkovChain.html).
+The documentation is available [here](https://purplnay.github.io/markov-chain/MarkovChain.html).
 
 
 ## Installation

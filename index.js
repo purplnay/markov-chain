@@ -1,215 +1,257 @@
 /**
- * A Markov Chain
+ * @typedef {Object} MarkovChainJSON - A JSON representation of a Markov chain object.
+ * @property {string[][]} corpus - The corpus.
+ * @property {string[]} dictionary - The dictionary.
+ * @property {GenerationConfig} config - The default config used for sentence generation.
+ */
+
+/**
+ * @typedef {MarkovChainJSON | string} MarkovChainResolvable
+ */
+
+/**
+ * @typedef {Object} GenerationConfig - A config object used to generate sentences.
+ * @property {string} from - The word to start generating from
+ * @property {number} grams - The sequence length to use.
+ * @property {boolean} backward - Whether to generate backward or not.
+ */
+
+/**
+ * A Markov chain.
  */
 class MarkovChain {
 
   /**
-   * Create a Markov chain.
+   * Create a new MarkovChain.
    * 
-   * @param {number} [nGrams=3] The size of the n-gram.
-   * @param {string} [start='%startf%'] The start delimiter to use. Must not contain the separation token.
-   * @param {string} [end='%endf%'] The end delimiter to use. Must not contain the separation token.
-   * @param {string} [separation=' '] The separation token to use to split the new texts.
+   * @example
+   * // Create a new chain
+   * const chain = new MarkovChain()
+   * 
+   * // Add text
+   * chain.update('some text')
+   * 
+   * // Export it to string or to JSON
+   * const str = chain.toString()
+   * const json = chain.toJSON()
+   * 
+   * // Create new chains based on our saves
+   * const fromStr = new MarkovChain(str)
+   * const fromJSON = new markovChain(json)
+   * 
+   * @param {MarkovChainResolvable} [base] - A saved chain from .toJSON or .toString.
    */
-  constructor(nGrams = 3, start = '%startf%', end = '%endf%', separation = ' ') {
+  constructor(base = {}) {
+    try {
+      base = typeof base === 'string' ? base : JSON.stringify(base)
+    } catch {
+      throw 'Invalid \'base\' argument. Needs type MarkovChainResolvable.'
+    }
 
     /**
-     * The n-gram used by the chain.
-     * 
-     * @type {number}
-     */
-    this.nGrams = nGrams > 1 ? nGrams : 3;
-
-    /**
-     * The formatted start delimiter.
-     * 
-     * @type {string}
-     */
-    this.start = start;
-
-    /**
-     * The formatted end delimiter.
-     * 
-     * @type {string}
-     */
-    this.end = end;
-
-    /**
-     * The separation token used to split the new texts.
-     * 
-     * @type {string}
-     */
-    this.separation = separation;
-
-    /**
-     * The corpus of the chain.
+     * The sentences learnt by the Markov chain.
      * 
      * @type {string[][]}
      */
-    this.corpus = [];
+    this.corpus = base.corpus || []
+
+    /**
+     * A list of all the words learnt.
+     * 
+     * @type {string[]}
+     */
+    this.dictionary = base.dictionary || []
+
+    /**
+     * The default config to use for generation
+     * 
+     * @type {GenerationConfig}
+     */
+    this.config = base.config || {
+      from: '',
+      grams: 2,
+      backward: false
+    }
   }
 
   /**
-   * Update the corpus of the chain.
+   * Add a sentence to the Markov chain.
    * 
-   * @param {string} text The text to add.
-   * @return {MarkovChain} The current MarkovChain instance, updated.
+   * @example
+   * const chain = new MarkovChain()
+   * 
+   * chain.update('Some text')
+   * 
+   * @param {string} sentence - The sentence to add.
    */
-  update(text) {
-    if (text.trim().length === 0) return this;
+  update(sentence) {
+    if (typeof sentence !== 'string') throw 'The argument should be a string'
 
-    const start = [];
-    const end = [];
-    
-    for (let i = 0; i < this.nGrams; i++) {
-      start.push(this.start);
-      end.push(this.end);
-    }
-    
-    const words = `${start.join(this.separation)}` +
-          this.separation +
-          `${text}`.split(this.separation) +
-          this.separation +
-          `${end.join(this.separation)}`;
+    const words = sentence.split(' ')
+    const last = this.corpus.length
 
-    for (let i in words) {
-      const index = Number(i);
+    this.corpus.push([])
 
-      if (index < words.length - 1) {
-        this.corpus.push(words.slice(index, index + this.nGrams));
+    words.forEach(word => {
+      const index = this.dictionary.indexOf(word)
+
+      if (index === -1) {
+        this.dictionary.push(word)
+        this.corpus[last].push(this.dictionary.length - 1)
+      } else {
+        this.corpus[last].push(index)
       }
-    }
-
-    return this;
+    })
   }
 
   /**
-   * Generate a new text.
+   * Search if a word is in the corpus.
    * 
-   * @param {string} [start=this.start] The word to start with.
-   * @return {string} The generated text.
-   */
-  generate(start = this.start) {
-    if (this.corpus.length === 0) return '';
-
-    const words = [start];
-
-    while (words[words.length - 1] !== this.end) {
-      const nextChains = this.corpus.filter(chain => chain[0] === words[words.length - 1]);
-      const nextChain = nextChains[Math.floor(Math.random() * nextChains.length)];
-
-      words.push(...nextChain.slice(1));
-    }
-
-    words.shift();
-    words.pop();
-
-    return words.join(this.separation);
-  }
-
-  /**
-   * Build a sentence from a word.
+   * @example
+   * const chain = new MarkovChain()
    * 
-   * @param {string} word The word to build a sentence from.
-   * @return {string}
-   */
-  generateFrom(word) {
-    if (this.corpus.length === 0 || !this.contains(word) || word === this.start || word === this.end) return '';
-
-    const leftPart = [];
-    const rightPart = this.generate(word);
-
-    let search = word;
-
-    while (search !== this.start) {
-      if (search === word) {
-        const chains = this.corpus.filter(chain => chain.indexOf(word) > 0);
-        const chain = [...chains[Math.floor(Math.random() * chains.length)]].reverse();
-
-        while (chain[0] !== word) {
-          chain.shift();
-        }
-
-        leftPart.push(...chain);
-
-        search = leftPart[leftPart.length - 1];
-
-        continue;
-      }
-
-      const nextChains = this.corpus.filter(chain => chain[chain.length - 1] === search);
-      const nextChain = nextChains[Math.floor(Math.random() * nextChains.length)];
-
-      leftPart.push(...nextChain.reverse().slice(1));
-      search = leftPart[leftPart.length];
-    }
-
-    leftPart.pop();
-
-    return [...leftPart.reverse(), rightPart].join(this.separation);
-  }
-
-  /**
-   * Check if the Markov chain contains a word.
+   * console.log(chain.contains('OwO')) // false
    * 
-   * @param {string} word The word to check.
+   * chain.update('hi OwO')
+   * 
+   * console.log(chain.contains('OwO')) // true
+   * 
+   * @param {string} word - The word to search for.
    * @return {boolean}
    */
   contains(word) {
-    return this.corpus.filter(s => s.indexOf(word) !== -1).length > 0;
+    return this.dictionary.includes(word)
   }
 
   /**
-   * Transforms the current Markov chain to a JSON object.
+   * Generate a new sentence.
    * 
-   * @return {Object} The current Markov chain as a JSON object.
+   * @example <caption>Generate a sentence</caption>
+   * // Create a Markov chain
+   * const chain = new MarkovChain()
+   * 
+   * // Add some words to it
+   * chain.update('Some words')
+   * chain.update('Some more words')
+   * chain.update('Some OwO')
+   * 
+   * // Generate a sentence
+   * const sentence = chain.generate()
+   * console.log(sentence)
+   * 
+   * // Generate a sentence starting with 'OwO'
+   * const owo = chain.generate({ from: 'OwO' })
+   * console.log(owo)
+   * 
+   * // Generate a sentence backward
+   * const backwardOwO = chain.generate({ from: 'OwO', backward: true })
+   * console.log(backwardOwO)
+   * 
+   * @param {GenerationConfig} [config=this.config] - The config to use for the generation.
+   * @return {string}
+   */
+  generate(config = {}) {
+    const from = config.from || this.config.from
+    const grams = config.grams || this.config.grams
+    const backward = config.backward || this.config.backward
+
+    if (from !== '' && !this.contains(from)) return ''
+
+    const  sentence = []
+
+    let done = false
+
+    // If no 'from' is set, get a random first word
+    if (!from.length) {
+      sentence.push(this._getRandom(this.corpus)[0])
+    } else {
+      sentence.push(this.dictionary.indexOf(from))
+    }
+
+    // Get next words until done
+    while (!done) {
+      const last = sentence[sentence.length - 1]
+
+      // Get the possible chains
+      const possibleChains = this.corpus.filter(s => s.includes(last))
+
+      // Select a random one
+      const chain = this._getRandom(possibleChains)
+
+      // Keep the ngram length of it
+      const wordIndex = chain.indexOf(last)
+      const sequence = []
+
+      if (backward) {
+        const start = wordIndex - grams
+
+        chain
+          .slice(start >= 0 ? start : 0, wordIndex)
+          .reverse()
+          .forEach(word => sequence.push(word))
+      } else {
+        chain
+          .slice(wordIndex + 1, wordIndex + grams + 1)
+          .forEach(word => sequence.push(word))
+      }
+
+      sentence.push(...sequence)
+
+      // Set done to true if end of sentence
+      if (backward) {
+        done = wordIndex - grams <= 0
+      } else {
+        done = wordIndex + grams >= chain.length - 1
+      }
+    }
+
+    // Translate and return the result
+    if (backward) {
+      return sentence
+        .reverse()
+        .map(word => this.dictionary[word])
+        .join(' ')
+    } else {
+      return sentence
+        .map(word => this.dictionary[word])
+        .join(' ')
+    }
+  }
+
+  /**
+   * Get a JSON version of the chain object.
+   * 
+   * @return {MarkovChainJSON}
    */
   toJSON() {
     return {
-      nGrams: this.nGrams,
-      start: this.start,
-      end: this.end,
-      separation: this.separation,
-      corpus: [...this.corpus]
-    };
+      corpus: this.corpus.map(s => [...s]),
+      dictionary: [...this.dictionary],
+      config: { ...this.config }
+    }
   }
 
   /**
-   * Transforms the current Markov chain to a JSON string.
+   * Get a string version of the chain object.
    * 
-   * @return {string} The current Markov chain as a JSON string.
+   * @return {string}
    */
   toString() {
-    return JSON.stringify(this.toJSON());
+    return JSON.stringify(this.toJSON())
   }
 
   /**
-   * Create a MarkovChain instance from a JSON object.
+   * Get a random element from an array.
    * 
-   * @param {Object} json The JSON object.
-   * @return {MarkovChain} The MarkovChain instance built from the JSON.
+   * @param {*[]} arr - The array to get a random element from.
+   * @return {*}
+   * @private
    */
-  static fromJSON(json) {
-    const markovChain = new MarkovChain(json.nGrams, json.start, json.end, json.separation);
-
-    markovChain.corpus = [...json.corpus];
-
-    return markovChain;
-  }
-
-/**
- * Create a MarkovChain instance from a JSON string.
- *
- * @param {string} json The JSON string.
- * @return {MarkovChain} The MarkovChain instance built from the string.
- */
-  static fromString(str) {
-    return this.fromJSON(JSON.parse(str));
+  _getRandom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
   }
 }
 
-if (typeof window !== 'undefined') {
-  window.MarkovChain = MarkovChain;
-} else {
+if (typeof window === 'undefined') {
   module.exports = MarkovChain;
 }

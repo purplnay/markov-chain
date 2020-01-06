@@ -11,7 +11,7 @@
     "purpl"
   ],
   "homepage": "https://purplnay.github.io/markov-chain/",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
   "author": "Nay <nay@purpltag.com>",
@@ -21,6 +21,7 @@
     "jsdoc": "^3.6.3"
   },
   "scripts": {
-    "docs": "jsdoc -R README.md index.js -d docs"
+    "docs": "jsdoc -R README.md index.js -d docs",
+    "test": "mocha"
   }
 }

@@ -48,6 +48,8 @@ class MarkovChain {
       throw 'Invalid \'base\' argument. Needs type MarkovChainResolvable.'
     }
 
+    base = JSON.parse(base)
+
     /**
      * The sentences learnt by the Markov chain.
      * 

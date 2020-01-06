@@ -11,16 +11,18 @@
     "purpl"
   ],
   "homepage": "https://purplnay.github.io/markov-chain/",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "https://github.com/purplnay/markov-chain.git",
   "author": "Nay <nay@purpltag.com>",
   "types": "typings/index.d.ts",
   "license": "MIT",
   "devDependencies": {
+    "docdash": "^1.1.1",
     "jsdoc": "^3.6.3"
   },
   "scripts": {
-    "docs": "jsdoc -R README.md index.js -d docs"
+    "docs": "jsdoc -R README.md index.js -d docs -t node_modules/docdash",
+    "test": "mocha"
   }
 }

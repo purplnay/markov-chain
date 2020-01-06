@@ -1,6 +1,7 @@
 # Markov Chain
 
-A simple Marvkov chain class supporting different n-grams
+A simple Marvkov chain class supporting different n-grams, back and forth generation
+and serializable to JSON or string in order to save them and reload them later.
 
 
 ## Documentation

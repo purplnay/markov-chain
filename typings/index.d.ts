@@ -1,90 +1,65 @@
 declare module 'purpl-markov-chain' {
+  type MarkovChainJSON = {
+    from: string,
+    grams: number,
+    backward: boolean
+  }
+
+  type MarkovChainResolvable = MarkovChainJSON | string
+
+  type GenerationConfig = {
+    from: string,
+    grams: number,
+    backward: boolean
+  }
 
   /**
-  * A Markov Chain
-  */
-  export default class MarkovChain {
-    /**
-     * The start delimiter.
-     */
-    start: string;
+   * A Markov chain
+   */
+  class MarkovChain {
+
+    /** The sentences learnt by the Markov chain */
+    corpus: string[][]
+
+    /** A list of all the words learnt. */
+    dictionary: string[]
+
+    /** The default config to use for generation */
+    config: GenerationConfig
+
+    constructor(base?: MarkovChainResolvable)
 
     /**
-     * The end delimiter.
+     * Add a semtemce tp the Markov chain.
+     * 
+     * @param sentence - The sentence to add.
      */
-    end: string;
+    update(sentence: string): void
 
     /**
-     * The n-gram used by the chain.
+     * Search if a word is in the corpus.
+     * 
+     * @param word - The word to search for.
      */
-    nGrams: number;
+    contains(word: string): boolean
 
     /**
-     * The separation token used to split the new texts.
+     * Generate a new sentence.
+     * 
+     * @param config - The config to use for the generation.
      */
-    separation: string;
+    generate(config: GenerationConfig): string
 
     /**
-     * The corpus of the chain. uwu
+     * Get a JSON version of the chain object.
      */
-    corpus: string[][];
+    toJSON(): MarkovChainJSON
 
     /**
-     * Create a Markov chain.
-     * @param nGrams The size of the n-gram.
-     * @param start The start delimiter to use. Must not contain the separation token.
-     * @param end The end delimiter to use. Must not contain the separation token.
-     * @param separation The separation token to use to split the new texts.
+     * Get a string version of the chain object.
      */
-    constructor(nGrams?: number, start?: string, end?: string, separation?: string);
-
-    /**
-     * Update the corpus of the chain.
-     * @param text The text to add.
-     */
-    update(text: string): MarkovChain;
-
-    /**
-     * Generate a new text.
-     * @param start The word to start with.
-     */
-    generate(start?: string): string;
-
-    /**
-     * Build a sentence from a word.
-     * @param word The word to build a sentence from.
-     */
-    generateFrom(word: string): string;
-
-    /**
-     * Check if the Markov chain contains a word.
-     * @param word The word to check.
-     */
-    contains(word: string): boolean;
-
-    /**
-     * Transforms the current Markov chain to a JSON object.
-     */
-    toJSON(): Object;
-
-    /**
-     * Transforms the current Markov chain to a JSON string.
-     * @return The current Markov chain as a JSON string.
-     */
-    toString(): string;
-
-    /**
-     * Create a MarkovChain instance from a JSON object.
-     * @param json The JSON object.
-     * @return The MarkovChain instance built from the JSON.
-     */
-    static fromJSON(json: Object): MarkovChain;
-
-    /**
-     * Create a MarkovChain instance from a JSON string.
-     * @param str The JSON string.
-     * @return The MarkovChain instance built from the string.
-     */
-    static fromString(str: string): MarkovChain;
+    toString(): string
   }
+
+  export default MarkovChain
 }

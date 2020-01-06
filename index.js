@@ -243,7 +243,7 @@ class MarkovChain {
   /**
    * Get a random element from an array.
    * 
-   * @param {*[]} arr - The array to get a random element from.
+   * @param {Array} arr - The array to get a random element from.
    * @return {*}
    * @private
    */

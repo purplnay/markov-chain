@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <title>JSDoc: Class: MarkovChain</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <title>MarkovChain - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
-<div id="main">
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
-    <h1 class="page-title">Class: MarkovChain</h1>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MarkovChain.html">MarkovChain</a><ul class='methods'><li data-type='method'><a href="MarkovChain.html#contains">contains</a></li><li data-type='method'><a href="MarkovChain.html#generate">generate</a></li><li data-type='method'><a href="MarkovChain.html#toJSON">toJSON</a></li><li data-type='method'><a href="MarkovChain.html#toString">toString</a></li><li data-type='method'><a href="MarkovChain.html#update">update</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">MarkovChain</h1>
+    
 
     
 
@@ -28,38 +44,91 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>MarkovChain<span class="signature">(nGrams<span class="signature-attributes">opt</span>, start<span class="signature-attributes">opt</span>, end<span class="signature-attributes">opt</span>, separation<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
+        <h2>
+        MarkovChain
+        </h2>
         
-            <div class="class-description">A Markov Chain</div>
+            <div class="class-description">A Markov chain.</div>
         
     
 </header>
 
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
+            
 
     
     <h2>Constructor</h2>
     
 
+    <h4 class="name" id="MarkovChain"><span class="type-signature"></span>new MarkovChain<span class="signature">(base<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
     
-    <h4 class="name" id="MarkovChain"><span class="type-signature"></span>new MarkovChain<span class="signature">(nGrams<span class="signature-attributes">opt</span>, start<span class="signature-attributes">opt</span>, end<span class="signature-attributes">opt</span>, separation<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line44">line 44</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Create a Markov chain.
+    Create a new MarkovChain.
 </div>
 
 
 
 
 
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Create a new chainconst chain = new MarkovChain()// Add textchain.update('some text')// Export it to string or to JSONconst str = chain.toString()const json = chain.toJSON()// Create new chains based on our savesconst fromStr = new MarkovChain(str)const fromJSON = new markovChain(json)</code></pre>
 
 
 
@@ -81,8 +150,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -93,13 +160,13 @@
 
         <tr>
             
-                <td class="name"><code>nGrams</code></td>
+                <td class="name"><code>base</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type"><a href="global.html#MarkovChainResolvable">MarkovChainResolvable</a></span>
 
 
             
@@ -118,131 +185,8 @@
             
 
             
-                <td class="default">
-                
-                    3
-                
-                </td>
-            
 
-            <td class="description last">The size of the n-gram.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>start</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    '%startf%'
-                
-                </td>
-            
-
-            <td class="description last">The start delimiter to use. Must not contain the separation token.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>end</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    '%endf%'
-                
-                </td>
-            
-
-            <td class="description last">The end delimiter to use. Must not contain the separation token.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>separation</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ' '
-                
-                </td>
-            
-
-            <td class="description last">The separation token to use to split the new texts.</td>
+            <td class="description last">A saved chain from .toJSON or .toString.</td>
         </tr>
 
     
@@ -254,37 +198,77 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="config"><span class="type-signature"></span>config<span class="type-signature"> :<a href="global.html#GenerationConfig">GenerationConfig</a></span></h4>
+
+
+
+
+
 <dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line14">line 14</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line70">line 70</a>
     </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -298,38 +282,26 @@
 
 
 
+<div class="description">
+    The default config to use for generation
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="global.html#GenerationConfig">GenerationConfig</a></span>
+
+
+        </li>
+    </ul>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
 
         
             
@@ -338,8 +310,53 @@
 
 
 
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
 <div class="description">
-    The corpus of the chain.
+    The sentences learnt by the Markov chain.
 </div>
 
 
@@ -358,37 +375,46 @@
 
 
 
+
+        
+            
+<h4 class="name" id="dictionary"><span class="type-signature"></span>dictionary<span class="type-signature"> :Array.&lt;string></span></h4>
+
+
+
+
+
 <dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line49">line 49</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line63">line 63</a>
     </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -402,16 +428,8 @@
 
 
 
-
-        
-            
-<h4 class="name" id="end"><span class="type-signature"></span>end<span class="type-signature"> :string</span></h4>
-
-
-
-
 <div class="description">
-    The formatted end delimiter.
+    A list of all the words learnt.
 </div>
 
 
@@ -420,271 +438,11 @@
     <ul>
         <li>
             
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;string></span>
 
 
         </li>
     </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line35">line 35</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="nGrams"><span class="type-signature"></span>nGrams<span class="type-signature"> :number</span></h4>
-
-
-
-
-<div class="description">
-    The n-gram used by the chain.
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="separation"><span class="type-signature"></span>separation<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    The separation token used to split the new texts.
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line42">line 42</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="start"><span class="type-signature"></span>start<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    The formatted start delimiter.
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -702,340 +460,72 @@
 
     
 
-    
-    <h4 class="name" id=".fromJSON"><span class="type-signature">(static) </span>fromJSON<span class="signature">(json)</span><span class="type-signature"> &rarr; {<a href="MarkovChain.html">MarkovChain</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Create a MarkovChain instance from a JSON object.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>json</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The JSON object.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line180">line 180</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The MarkovChain instance built from the JSON.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="MarkovChain.html">MarkovChain</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".fromString"><span class="type-signature">(static) </span>fromString<span class="signature">(json)</span><span class="type-signature"> &rarr; {<a href="MarkovChain.html">MarkovChain</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Create a MarkovChain instance from a JSON string.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>json</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The JSON string.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line194">line 194</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The MarkovChain instance built from the string.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="MarkovChain.html">MarkovChain</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="contains"><span class="type-signature"></span>contains<span class="signature">(word)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line122">line 122</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Check if the Markov chain contains a word.
+    Search if a word is in the corpus.
 </div>
 
 
 
 
 
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const chain = new MarkovChain()console.log(chain.contains('OwO')) // falsechain.update('hi OwO')console.log(chain.contains('OwO')) // true</code></pre>
 
 
 
@@ -1081,57 +571,13 @@
 
             
 
-            <td class="description last">The word to check.</td>
+            <td class="description last">The word to search for.</td>
         </tr>
 
     
     </tbody>
 </table>
 
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line146">line 146</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -1152,7 +598,7 @@
         
 
 
-<dl>
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -1168,29 +614,79 @@
 
 
 
-
-
         
             
 
     
 
+    <h4 class="name" id="generate"><span class="type-signature"></span>generate<span class="signature">(config<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
     
-    <h4 class="name" id="generate"><span class="type-signature"></span>generate<span class="signature">(start<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line153">line 153</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Generate a new text.
+    Generate a new sentence.
 </div>
 
 
 
 
 
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Generate a sentence</p>
+    
+    <pre class="prettyprint"><code>// Create a Markov chainconst chain = new MarkovChain()// Add some words to itchain.update('Some words')chain.update('Some more words')chain.update('Some OwO')// Generate a sentenceconst sentence = chain.generate()console.log(sentence)// Generate a sentence starting with 'OwO'const owo = chain.generate({ from: 'OwO' })console.log(owo)// Generate a sentence backwardconst backwardOwO = chain.generate({ from: 'OwO', backward: true })console.log(backwardOwO)</code></pre>
 
 
 
@@ -1224,13 +720,13 @@
 
         <tr>
             
-                <td class="name"><code>start</code></td>
+                <td class="name"><code>config</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#GenerationConfig">GenerationConfig</a></span>
 
 
             
@@ -1251,12 +747,12 @@
             
                 <td class="default">
                 
-                    this.start
+                    <code>this.config</code>
                 
                 </td>
             
 
-            <td class="description last">The word to start with.</td>
+            <td class="description last">The config to use for the generation.</td>
         </tr>
 
     
@@ -1268,50 +764,6 @@
 
 
 
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line80">line 80</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
 
 
 
@@ -1325,13 +777,9 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    The generated text.
-</div>
 
 
-
-<dl>
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -1347,23 +795,64 @@
 
 
 
-
-
         
             
 
     
 
+    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="global.html#MarkovChainJSON">MarkovChainJSON</a>}</span></h4>
+
     
-    <h4 class="name" id="generateFrom"><span class="type-signature"></span>generateFrom<span class="signature">(word)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line226">line 226</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Build a sentence from a word.
+    Get a JSON version of the chain object.
 </div>
 
 
@@ -1374,98 +863,7 @@
 
 
 
-    <h5>Parameters:</h5>
-    
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>word</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The word to build a sentence from.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line104">line 104</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -1486,13 +884,13 @@
         
 
 
-<dl>
+<dl class="param-type">
     <dt>
         Type
     </dt>
     <dd>
         
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#MarkovChainJSON">MarkovChainJSON</a></span>
 
 
     </dd>
@@ -1502,133 +900,64 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id="toJSON"><span class="type-signature"></span>toJSON<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transforms the current Markov chain to a JSON object.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line155">line 155</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The current Markov chain as a JSON object.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line239">line 239</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Transforms the current Markov chain to a JSON string.
+    Get a string version of the chain object.
 </div>
 
 
@@ -1640,48 +969,6 @@
 
 
 
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line170">line 170</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -1700,13 +987,9 @@
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    The current Markov chain as a JSON string.
-</div>
 
 
-
-<dl>
+<dl class="param-type">
     <dt>
         Type
     </dt>
@@ -1722,29 +1005,77 @@
 
 
 
-
-
         
             
 
     
 
+    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(sentence)</span><span class="type-signature"></span></h4>
+
     
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(text)</span><span class="type-signature"> &rarr; {<a href="MarkovChain.html">MarkovChain</a>}</span></h4>
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line87">line 87</a>
+    </li></ul></dd>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
 
 
 
 <div class="description">
-    Update the corpus of the chain.
+    Add a sentence to the Markov chain.
 </div>
 
 
 
 
 
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const chain = new MarkovChain()chain.update('Some text')</code></pre>
 
 
 
@@ -1774,7 +1105,7 @@
 
         <tr>
             
-                <td class="name"><code>text</code></td>
+                <td class="name"><code>sentence</code></td>
             
 
             <td class="type">
@@ -1790,7 +1121,7 @@
 
             
 
-            <td class="description last">The text to add.</td>
+            <td class="description last">The sentence to add.</td>
         </tr>
 
     
@@ -1802,45 +1133,6 @@
 
 
 
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line58">line 58</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -1849,35 +1141,6 @@
 
 
 
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The current MarkovChain instance, updated.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="MarkovChain.html">MarkovChain</a></span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -1896,19 +1159,21 @@
 
 
 
+    
+    
 </div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MarkovChain.html">MarkovChain</a></li></ul>
-</nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sat Jan 04 2020 12:55:13 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Jan 06 2020 16:52:12 GMT+0100 (Central European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
 </body>
 </html>

@@ -48,6 +48,8 @@ class MarkovChain {
       throw 'Invalid \'base\' argument. Needs type MarkovChainResolvable.'
     }
 
+    base = JSON.parse(base)
+
     /**
      * The sentences learnt by the Markov chain.
      * 
@@ -163,7 +165,13 @@ class MarkovChain {
 
     // If no 'from' is set, get a random first word
     if (!from.length) {
-      sentence.push(this._getRandom(this.corpus)[0])
+      if (backward) {
+        const random = this._getRandom(this.corpus)
+
+        sentence.push(random[random.length - 1])
+      } else {
+        sentence.push(this._getRandom(this.corpus)[0])
+      }
     } else {
       sentence.push(this.dictionary.indexOf(from))
     }

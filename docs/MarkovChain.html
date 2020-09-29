@@ -128,7 +128,19 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// Create a new chainconst chain = new MarkovChain()// Add textchain.update('some text')// Export it to string or to JSONconst str = chain.toString()const json = chain.toJSON()// Create new chains based on our savesconst fromStr = new MarkovChain(str)const fromJSON = new markovChain(json)</code></pre>
+    <pre class="prettyprint"><code>// Create a new chain
+const chain = new MarkovChain()
+
+// Add text
+chain.update('some text')
+
+// Export it to string or to JSON
+const str = chain.toString()
+const json = chain.toJSON()
+
+// Create new chains based on our saves
+const fromStr = new MarkovChain(str)
+const fromJSON = new markovChain(json)</code></pre>
 
 
 
@@ -243,7 +255,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line70">line 70</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line72">line 72</a>
     </li></ul></dd>
     
 
@@ -316,7 +328,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line56">line 56</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -389,7 +401,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line63">line 63</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -472,7 +484,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line122">line 122</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -525,7 +537,13 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const chain = new MarkovChain()console.log(chain.contains('OwO')) // falsechain.update('hi OwO')console.log(chain.contains('OwO')) // true</code></pre>
+    <pre class="prettyprint"><code>const chain = new MarkovChain()
+
+console.log(chain.contains('OwO')) // false
+
+chain.update('hi OwO')
+
+console.log(chain.contains('OwO')) // true</code></pre>
 
 
 
@@ -631,7 +649,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line153">line 153</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -686,7 +704,25 @@
     
         <p class="code-caption">Generate a sentence</p>
     
-    <pre class="prettyprint"><code>// Create a Markov chainconst chain = new MarkovChain()// Add some words to itchain.update('Some words')chain.update('Some more words')chain.update('Some OwO')// Generate a sentenceconst sentence = chain.generate()console.log(sentence)// Generate a sentence starting with 'OwO'const owo = chain.generate({ from: 'OwO' })console.log(owo)// Generate a sentence backwardconst backwardOwO = chain.generate({ from: 'OwO', backward: true })console.log(backwardOwO)</code></pre>
+    <pre class="prettyprint"><code>// Create a Markov chain
+const chain = new MarkovChain()
+
+// Add some words to it
+chain.update('Some words')
+chain.update('Some more words')
+chain.update('Some OwO')
+
+// Generate a sentence
+const sentence = chain.generate()
+console.log(sentence)
+
+// Generate a sentence starting with 'OwO'
+const owo = chain.generate({ from: 'OwO' })
+console.log(owo)
+
+// Generate a sentence backward
+const backwardOwO = chain.generate({ from: 'OwO', backward: true })
+console.log(backwardOwO)</code></pre>
 
 
 
@@ -812,7 +848,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line226">line 226</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line234">line 234</a>
     </li></ul></dd>
     
 
@@ -917,7 +953,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line239">line 239</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line247">line 247</a>
     </li></ul></dd>
     
 
@@ -1022,7 +1058,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line87">line 87</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line89">line 89</a>
     </li></ul></dd>
     
 
@@ -1075,7 +1111,9 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const chain = new MarkovChain()chain.update('Some text')</code></pre>
+    <pre class="prettyprint"><code>const chain = new MarkovChain()
+
+chain.update('Some text')</code></pre>
 
 
 
@@ -1166,7 +1204,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Mon Jun 15 2020 09:33:05 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Sep 29 2020 17:35:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

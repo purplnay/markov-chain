@@ -53,6 +53,11 @@ describe('MarkovChain', () => {
       assert.ok(chain.generate({ from: 'OwO' }).length === 3)
     })
 
+    it('should generate a sentence backward from a given word', () => {
+      chain.update('i should be generated from UwU')
+      assert.ok(chain.generate({ from: 'UwU', backward: true }).startsWith('i'))
+    })
+
     it('should give an empty sentence when given an unknown word', () => {
       assert.ok(chain.generate({ from: 'uwu' }).length === 0)
     })

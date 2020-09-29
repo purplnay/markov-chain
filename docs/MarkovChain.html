@@ -48,7 +48,7 @@
         MarkovChain
         </h2>
         
-            <div class="class-description">A Markov chain.</div>
+            <div class="class-description usertext">A Markov chain.</div>
         
     
 </header>
@@ -114,7 +114,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Create a new MarkovChain.
 </div>
 
@@ -128,7 +128,19 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// Create a new chainconst chain = new MarkovChain()// Add textchain.update('some text')// Export it to string or to JSONconst str = chain.toString()const json = chain.toJSON()// Create new chains based on our savesconst fromStr = new MarkovChain(str)const fromJSON = new markovChain(json)</code></pre>
+    <pre class="prettyprint"><code>// Create a new chain
+const chain = new MarkovChain()
+
+// Add text
+chain.update('some text')
+
+// Export it to string or to JSON
+const str = chain.toString()
+const json = chain.toJSON()
+
+// Create new chains based on our saves
+const fromStr = new MarkovChain(str)
+const fromJSON = new markovChain(json)</code></pre>
 
 
 
@@ -282,7 +294,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     The default config to use for generation
 </div>
 
@@ -355,7 +367,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     The sentences learnt by the Markov chain.
 </div>
 
@@ -428,7 +440,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     A list of all the words learnt.
 </div>
 
@@ -511,7 +523,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Search if a word is in the corpus.
 </div>
 
@@ -525,7 +537,13 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const chain = new MarkovChain()console.log(chain.contains('OwO')) // falsechain.update('hi OwO')console.log(chain.contains('OwO')) // true</code></pre>
+    <pre class="prettyprint"><code>const chain = new MarkovChain()
+
+console.log(chain.contains('OwO')) // false
+
+chain.update('hi OwO')
+
+console.log(chain.contains('OwO')) // true</code></pre>
 
 
 
@@ -670,7 +688,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Generate a new sentence.
 </div>
 
@@ -686,7 +704,25 @@
     
         <p class="code-caption">Generate a sentence</p>
     
-    <pre class="prettyprint"><code>// Create a Markov chainconst chain = new MarkovChain()// Add some words to itchain.update('Some words')chain.update('Some more words')chain.update('Some OwO')// Generate a sentenceconst sentence = chain.generate()console.log(sentence)// Generate a sentence starting with 'OwO'const owo = chain.generate({ from: 'OwO' })console.log(owo)// Generate a sentence backwardconst backwardOwO = chain.generate({ from: 'OwO', backward: true })console.log(backwardOwO)</code></pre>
+    <pre class="prettyprint"><code>// Create a Markov chain
+const chain = new MarkovChain()
+
+// Add some words to it
+chain.update('Some words')
+chain.update('Some more words')
+chain.update('Some OwO')
+
+// Generate a sentence
+const sentence = chain.generate()
+console.log(sentence)
+
+// Generate a sentence starting with 'OwO'
+const owo = chain.generate({ from: 'OwO' })
+console.log(owo)
+
+// Generate a sentence backward
+const backwardOwO = chain.generate({ from: 'OwO', backward: true })
+console.log(backwardOwO)</code></pre>
 
 
 
@@ -851,7 +887,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Get a JSON version of the chain object.
 </div>
 
@@ -956,7 +992,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Get a string version of the chain object.
 </div>
 
@@ -1061,7 +1097,7 @@
 
 
 
-<div class="description">
+<div class="description usertext">
     Add a sentence to the Markov chain.
 </div>
 
@@ -1075,7 +1111,9 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const chain = new MarkovChain()chain.update('Some text')</code></pre>
+    <pre class="prettyprint"><code>const chain = new MarkovChain()
+
+chain.update('Some text')</code></pre>
 
 
 

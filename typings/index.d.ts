@@ -48,7 +48,7 @@ declare module 'purpl-markov-chain' {
      * 
      * @param config - The config to use for the generation.
      */
-    generate(config: GenerationConfig): string
+    generate(config?: GenerationConfig): string
 
     /**
      * Get a JSON version of the chain object.
